@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+ <head>
+   <title>Compte-rendu du TP2</title>
+   <meta charset="UTF-8">
+   <style>
+     *{
+        margin:0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    html, body{
+        background:#f2f2f6;
+        font-family: 'Segoe UI',sans-serif;
+        color: black;
+      }
+    h1{
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;;
+      }
+    h2{
+        text-indent: 3rem;
+        color:#000;
+        padding: 10px 0;
+        font-weight: bolder;
+      }
+    img{
+        width: 400px;
+        transform: rotate(270deg);
+        margin-left: 25%;
+      }
+    ol{
+        padding: 4px 10px;
+      }
+    ol li{
+        margin: 20px;
+        padding: 10px;
+        box-shadow: 1px 7px 7px rgba(0,0,0,.1);
+      }
+    ol li p, ol li h3, a{
+        padding: 8px;
+    }
+    table,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 6px;
+        text-align: center;
+      }
+    p~ol>li, p~ul>li{
+      box-shadow: none;
+      }
+   </style>
+ </head>
+ <body>
+  <h1>Compte-rendu de TP2</h1>
+  <h2>El Jide Yassine TD:G</h2> 
+  <h2>Exercice: Document de base</h2>
+  <ol>
+    <li>
+      <h3>Que manque-t-il comme information à la balise head pour que le fichier s'affiche correctement ?</h3>
+      <p>Pour moi le fichier s'affiche correctement mais en le passant par W3C Validator on nous demande d'indique le type d'encodage en ajouter un tag
+        &lt;meta&gt; indiquant le type d'encodage</p>
+    </li>
+    <li>      
+      <h3>À quoi servent les tags h1, h2 et h3 ?</h3>
+      <p>Les tags h1...h6  indiquent un titre ou sous-titre les h1 sont des titres de premier niveau à chaque fois le chiffre augmente la taille de police diminue</p>
+    </li>
+    <li>
+      <h3>A quoi sert le tag p?</h3>
+      <p>Le tag P est utilisé pour mettre en forme le texte dans un paragraphe.
+      </p>
+    </li>
+    <li>
+      <h3>Rajouter cetter phrase à votre document</h3>
+      <p>Les tags HTML commencent par une balise ouvrante &lt;foo&gt; et finissent par une balise fermante &lt;/foo&gt;.</p>
+    </li>
+    <li>
+      <h3>Comment en gras ou en italique?</h3>
+      <p>pour mettre en gras on utilise le tag &lt;b&gt;Votre texte ici!&lt;/b&gt;<b> gras</b> et pour l'italique on utilise le tag &lt;i&gt;Votre texte ici!&lt;/i&gt;<i> italique</i></p>
+    </li>
+    <li>
+      <h3>Comment mettre un mot en gras et en italique au même temps?</h3>
+      <p>Pour mettre en gras et en italique à la fois on utilise les deux tags au même temps &lt;b&gt;&lt;i&gt;Votre texte ici!&lt;/b&gt;&lt;/i&gt; l'inverse marche aussi <b><i>Celà est gras et italique</i></b></p>
+    </li>
+    <li>
+      <h3>Comment faire pour que touts les quetion soient automatiquement numérotées?</h3>
+      <p>Pour numéroter toutes les questions automatiquement il faut regrouper tous dans un tag &lt;ol&gt;&lt;/ol&gt; une liste ordonnée et à l'intérieur pour chaque question
+         on le met dans un tag &lt;li&gt;&lt;/li&gt; qui définit un élément de liste  et ce tag regroupe la question et la réponse le &lt;h3&gt;&lt;/h3&gt; &lt;p&gt;&lt;/p&gt; .
+      </p>
+    </li>
+    <li>
+      <h3>Coment rajouter un titre à la fenêtre du navigateur</h3>
+      <p>on rajoute le tag &lt;title&gt;&lt;/title&gt; dans le head avec le titre désiré.</p>
+    </li>
+    <li>
+      <h3>Comment ajouter un lien vers le cours de programmation web</h3>
+      <p>Pour ajouter un lien on utilise le tag &lt;a&gt;&lt;/a&gt; avec l'attribut href qui indique le lien qu'on veut</p>
+      <a href="http://igm.univ-mlv.fr/~juge/progweb/#/" target="_blank">cours de programmation web</a>
+    </li>
+    <li>
+      <h3>Dessinez et insérez une image désigant l'arbre des différents tags correspondant à votre compte rendu</h3>
+      <img src="./mon-super-arbre.jpeg" alt="arbre dom de ce fichier">
+    </li>
+  </ol>
+  <h2>Exercice: Les listes et les tables</h2>
+  <ol>
+    <li>
+      <h3>Ecrivez la liste suivante sous forme d'une liste numérotée</h3>
+      <p>Pour cela on utilise le tag &lt;ol&gt;&lt;/ol&gt; une liste ordonnée</p>
+      <ol>
+        <li>maths</li>
+        <li>physique</li>
+        <li>français</li>
+      </ol>
+    </li>
+    <li>
+      <h3>Transformez là en une liste à puces</h3>
+      <p>Pour cela on utilise le tag &lt;ul&gt;&lt;/ul&gt; une liste non ordonnée</p>
+      <ul>
+        <li>maths</li>
+        <li>physique</li>
+        <li>français</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Ecrivez la table de multiplication suivante sous forme d'une table HTML avce modification</h3>
+      <p>Pour créer cette table on utilise le tag &lt;table&gt;&lt;/table&gt; et pour chaque ligne on utilise le tag 
+        &lt;tr&gt;&lt;/tr&gt; et pour les titres on utilise le tag &lt;th&gt;&lt;/th&gt; .
+      </p>
+      <table>
+          <tr>
+            <th> </th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+          </tr>
+          <tr>
+            <th>1</th>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>3</td>
+            <td>6</td>
+            <td>9</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td>4</td>
+            <td>8</td>
+            <td>12</td>
+            <td>16</td>
+          </tr>
+      </table>
+    </li>
+    <li>
+      <h3>Ajouter une case faisant 2 colonnes et une case faisant deux lignes dans une nouvelle table.</h3>
+      <p>Pour faire cela on utilise l'attribut colspan pour avoir des caises plusieurs colonnes et rowspan pour avoir des lignes faisant
+        plusieurs lignes.
+      </p>
+      <table>
+        <tr>
+          <td colspan="2">ligne 1, case 1</td>
+          <td>ligne 1, case 2</td>
+        </tr>
+        <tr>
+          <td>ligne 2, case 1</td>
+          <td>ligne 2, case 2</td>
+          <td>ligne 2, case 3</td>
+        </tr>
+        <tr>
+          <td>ligne 3, case 1</td>
+          <td rowspan="2">ligne 3, case 2</td>
+          <td>ligne 3, case 3</td>
+        </tr>
+        <tr>
+          <td>ligne 4, case 1</td>
+          <td>ligne 4, case 3</td>
+        </tr>
+      </table>
+    </li>
+  </ol>
+ </body>
+</html>

@@ -1,0 +1,80 @@
+Yassine ELJIDE TDG
+
+
+#Exercice1:
+	
+	1. Tout d'abord on ouvre Windows PowerShell en faisant un clic droit sur la fenêtre "Windows" puis on sélectionne l'onglet "Windows PowerShell" et ça ouvre
+	   un terminal . On se déplace vers le bureau à l'aide de la commande "cd" et on crée un répertoire "progweb" à l'aide de la commande "mkdir"
+           (cd desktop --- mkdir progweb)
+	2. On se déplace vers le répertoire "progweb" et on crée un répertoire "tp1" (cd progweb --- mkdir tp1)
+	3. A l'intérieur du répértoire "tp1" on lance la commande notepad (nom fichier) et ça nous crée une note (cd tp1 --- notepad compte-rendu-tp1.txt)térieur du répértoire "tp1" on lance la commande notepad (nom fichier) et ça nous crée une note (cd tp1 --- notepad compte-rendu-tp1.txt)
+
+#----------------------------------------------------------------------------------------#
+
+#Exercice2:
+
+	1. Le nom de la machine est: www.w3.org
+   	   Le nom du domaine est: w3.org
+	
+	2. Les deux dernières lignes de la réponse correspondent au nom du domaine (w3.org) et son adresse IP IPV4 et IPV6 sous forme hexadécimal.
+
+	3. En remplaçant l'url par l'adresse IP ça marche aussi . On utilise les noms de machines à la place des adresses IP car les Adresses IP peuvent changer mais la machine peut
+	   garder le même nom du coup c'est mieux d'utiliser le nome de machine et de plus c'est facile à retenir que des chiffres .
+	
+	4. La Commande "tracert" nous permet de savoir comment les données sont routées plûtot le chemin auquel ça passe l'information 
+	   Le Nom du routeur de sortie est: FREEBOX [192.168.0.254]
+	   Le nom du réseau s'appelle: FREEBOX
+	   Les autres réseaux traversés:  free-paris-por1.bb.ip-plus.net - ae2.mpr1.cdg11.fr.zip.zayo.com - ae4.mpr2.cdg12.fr.zip.zayo.com -  mitnet.core-1-ext.csail.mit.edu
+	5. l'adresse IP du dome letour.fr est 35.241.3.120
+	6. l'adresse IP est 35.186.248.227 après avoir changé l'url avec l'addresse IP le site ne marche pas , car le fichier auquel on fait la requête est introuvale et que l'accès via l'adresse IP 
+	   n'est pas sécurisé c'est une HTTP ERROR 404(Client Error) alors il faut utiliser le nom complet de la machine . 
+
+	   
+#----------------------------------------------------------------------------------------#
+
+#Exercice3:
+
+	3. Le numéro du port est 80
+
+	4. le header de la réponse est: HTTP/1.1 200 OK
+					Date: Wed, 03 Feb 2021 20:36:31 GMT
+					Server: Apache
+					Content-Length: 2957
+					Connection: close
+					Content-Type: text/html; charset=UTF-8
+	
+	5. Les valeurs correspondent qu'on a Utilisé le protocole HTTP (Hyper Text Transfer Portocol) de la version 1.1 et que
+	   la réponse était bonne (200 OK)
+
+	6. Le nom du serveur Web est Apache Server
+
+	7. Content-Type correspond au type de contenu de la réponse qui s'agit d'un fichier html type de encodage UTF-8 linké avec du Js et CSS.
+
+	8. Content-length correspond à la taille du contenu.
+
+	9. Pour la requête GET /ens/toto.txt HTTP/0.9:
+		HTTP/1.1 404 Not Found
+		Date: Wed, 03 Feb 2021 20:54:07 GMT
+		Server: Apache
+		Connection: close
+		Content-Type: text/html
+	   Protocole HTTP la réponse n'est pas bonne Error 404 le serveur c'est Apache le type de de contenu est un fichier HTML qui nous informe que le fichier demandé
+	   est introuvable
+
+	10. Pour la requête GET /index.html HTTP/0.9:
+		HTTP/1.1 302 Found
+		Date: Wed, 03 Feb 2021 20:58:01 GMT
+		Server: Apache
+		Location: http://igm.u-pem.fr/index.html
+		Content-Length: 279
+		Connection: close
+		Content-Type: text/html; charset=iso-8859-1
+	Protocole HTTP la réponse est 302 ce que signifie que l'url a changé du coup le serveur c'est Apache le type de de contenu est un fichier HTML encodé un iso-latin1
+	de longeur 279 octets .
+	La valeur de location correspond à l'url auquel on a fait la requête.
+
+
+
+	
+
+
