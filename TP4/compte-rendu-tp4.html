@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./compte-rendu.css" />
+    <title>Compte Rendu TP4</title>
+  </head>
+  <body>
+    <h1>Compte Rendu TP4</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span>Lien vers l'exercice 1: <a href="./exo1.html">Exercice1</a></span>
+      <span>Lien vers l'exercice 1: <a href="./exo2.html">Exercice2&3</a></span>
+    </div>
+    <h2>Exercice1: Style de base</h2>
+    <ol>
+      <li>
+        <h3>
+          Faites en sorte que toutes les images à l'intérieur des boîtes (pas
+          les autres) aient une largeur (width) de 180 pixels.
+        </h3>
+        <p>
+          On met chaque image dans un div avec la classe image et on donne une
+          largeur de 180px avec la proprité Width.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Au lieu d'afficher les images verticalement, on souhaite les afficher
+          horizontalement.
+        </h3>
+        <p>
+          On sélectionne toutes les images (.image img) et après on donne une
+          proprité float avec la valeur left pour les afficher horizontalement.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Que se passe-t-il si l'on fait varier la taille de la fenêtre du
+          navigateur horizontalement ?
+        </h3>
+        <p>
+          Si on varie la taille de la fenêtre les images se réorganisent
+          automatiquement grâce à float
+        </p>
+      </li>
+      <li>
+        <h3>
+          Vérifiez que vous pouvez aussi mettre toutes les images à droite en
+          changeant juste un mot dans la partie CSS du document. Puis remettez
+          les images alignées à gauche.
+        </h3>
+        <p>Oui, en donnant une valeur right à la proprité float</p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que les titres (animal1, animal2, etc.) soient
+          affichés en blanc sur fond noir et soient centrés horizontalement par
+          rapport à la boîte qui les contient.
+        </h3>
+        <p>
+          On rajoute la proprité text-align avec la valeur center aux boites
+          contenant les noms des animaux (.image div)
+        </p>
+      </li>
+      <li>
+        <h3>
+          Espacez les unes des autres les boîtes contenant les images avec la
+          propriété margin.
+        </h3>
+        <p>
+          En utilisant la proprité margin on rajoute de l'espace entre les
+          boites
+        </p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que les images à l'intérieur des boîtes aient une
+          bordure de trois pixels de largeur de couleur #aaaaaa.
+        </h3>
+        <p>
+          Avec la proprité border on rajouter une bordure de (3px solid #aaaaaa)
+          aux images (.image img)
+        </p>
+      </li>
+      <li>
+        <h3>
+          Changez l'opacité (propriété opacity) lorsque l'utilisateur passe sa
+          souris au-dessus d'une image dans une boîte.
+        </h3>
+        <p>
+          On donne au début une opacity de 0.7/1 aux images après si la souris
+          passe au dessus on la rammène à 1 en utilisant ce sélécteur (.image
+          img:hover)
+        </p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que les titres soient accolés par le bas à l'image et
+          mordent légèrement sur l'image (de 5 pixels par exemple).
+        </h3>
+        <p>
+          En donnant une position absolute aux boites contenant les titres des
+          images on peut jouer avec par exemple top: -5px comme ci indiqué
+        </p>
+      </li>
+    </ol>
+    <h2>Exercice2: Barre de menu</h2>
+    <ol>
+      <li>
+        <h3>
+          Faites en sorte que la liste ait une position fixe, en haut à gauche
+          de la partie affichage du navigateur.
+        </h3>
+        <p>On Rajoute Une propriété position fixed à la liste &lt;ul&gt;</p>
+      </li>
+      <li>
+        <h3>
+          Retirez le style par défaut des items de liste (avec list-style-type)
+          pour qu'il n'y ait pas de style par défaut
+        </h3>
+        <p>
+          On rajoute la propriété list-style-type avec la valeur none pour
+          modifier les puces
+        </p>
+      </li>
+      <li>
+        <h3>
+          Affichez les items en gras et avec une police Arial (ou sinon
+          sans-serif)
+        </h3>
+        <p>
+          On rajoute la propriété font-weight et font-family aux items de liste
+          avec les valeurs bold, Arial successivement.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que les items soient affichés horizontalement collés à
+          gauche et non plus verticalement.
+        </h3>
+        <p>
+          On rajoute la proprité display avec la valeur inline-block aux items
+          de la liste pour qu'ils soient affichés horizontalement.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que les items aient une largeur de 100 pixels et
+          ajoutez un espacement d'une dizaine de pixel entre les items.
+        </h3>
+        <p>
+          On donne une width de 100px et margin 10px à gauche et à droite de
+          chaque item de la liste.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Changez le fond du menu pour qu'il soit de couleur violette (purple),
+          en chantant purple rain, et changez la couleur des items pour qu'ils
+          soient blancs.
+        </h3>
+        <p>
+          On rajoute un couleur au fond du menu avec la propriété background et
+          une couleur blanche avec color aux items de menu.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Fixez la hauteur (height) du menu à 50 pixels puis faites en sorte que
+          le menu occupe toute la largeur (width).
+        </h3>
+        <p>
+          On donne une hauteur de 50px au menu avec la propriété Height et une
+          largeur de 100% avec la proprité Width.
+        </p>
+      </li>
+      <li>
+        <h3>
+          Faites en sorte que l'item 'About' soit affiché à droite de la barre
+          de menu.
+        </h3>
+        <p>
+          On rajoute une class Right à l'item About et on donne une valeur de
+          right à cette dernière pour qu'elle soit placée à droite
+        </p>
+      </li>
+      <li>
+        <h3>Affichez une ligne de 2 pixels en bas du menu.</h3>
+        <p>
+          On Rajouter la propriété border-bottom au menu comme ça il aura un
+          tableau juste en bas de 2px solid black.
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>

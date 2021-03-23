@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Exo2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .menu {
+        position: fixed;
+        list-style: none;
+        height: 50px;
+        background: purple;
+        width: 100%;
+        border-bottom: 2px solid black;
+      }
+      .menu li {
+        width: 100px;
+        margin: 0 10px;
+        display: inline-block;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+        text-shadow: 1px 4px 5px rgba(0, 0, 0, 0.9);
+        opacity: 0.8;
+        transition: all 0.4s ease;
+      }
+      li:hover {
+        opacity: 1;
+      }
+      .right {
+        float: right;
+      }
+      .submenu {
+        position: absolute;
+        display: none;
+        list-style: none;
+        font-family: Arial, sans-serif;
+        background: gray;
+        top: 40px;
+      }
+      .submenu li {
+        display: block;
+      }
+      .submenu-li:hover .submenu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="menu">
+      <li class="submenu-li">
+        Web
+        <ul class="submenu">
+          <li>Test1</li>
+          <li>Test2</li>
+        </ul>
+      </li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li class="right">About</li>
+    </ul>
+  </body>
+</html>
