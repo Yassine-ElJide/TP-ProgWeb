@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Compte-rendu TP5</title>
+    <link rel="stylesheet" href="compte-rendu.css" />
+  </head>
+  <body>
+    <h1>Compte Rendu TP5</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span
+        >Lien vers l'exercice 1:
+        <a href="./exo1.html" target="_blank">Exercice1</a></span
+      >
+      <span
+        >Lien vers l'exercice 2:
+        <a href="./exo2.html" target="_blank">Exercice2</a></span
+      >
+    </div>
+    <h2>Exercice 1: Hello World</h2>
+    <ol>
+      <li>
+        <h3>Comment fait-on pour ouvrir la console développeur ?</h3>
+        <p>
+          On fait la combinaison
+          <kbd>Ctrl<kbd></kbd> + <kbd></kbd> Shift <kbd></kbd>+ </kbd
+          ><kbd>J</kbd> sur Chrome, et sur Firefox on fait <kbd>Ctrl </kbd
+          ><kbd>+ </kbd><kbd>Maj </kbd><kbd>+ </kbd><kbd>K</kbd> ou bien on
+          clique droit sur inspecter élément et on part sur la console.
+        </p>
+      </li>
+      <li>
+        <h3>Afficher les chiffres de 0 à 99 dans la console.</h3>
+        <p>On utilise une boucle for et on affiche le chiffre à chaque itération avec le code suivant :</p>
+        <pre>
+                for (let i = 0; i &lt; 100; i++) {
+                    console.log(i);
+                }
+        </pre>
+      </li>
+      <li>
+        <h3>Modifier le code pour ne pas afficher les multiples de 3.</h3>
+        <p>On ajoute la condition suivante au code pour sauter les multiples de 3 avec le mote clé continue</p>
+        <pre>
+                for (let i = 0; i &lt; 100; i++) {
+                    if (i % 3 === 0) continue;
+                    console.log(i);
+                }
+        </pre>
+      </li>
+      <li>
+        <h3>
+          Écrire une fonction affichant les <code>n</code> premiers entiers avec
+          <code>n</code> en paramètre et non compris
+        </h3>
+        <p>même code on ajoute juste le tous dans une fonction qu'on peut réutiliser <i>Code :</i></p>
+        <pre>
+                function afficherPremiersEntiers(n) {
+                    for (let i = 0; i &lt; n; i++) {
+                      console.log(i);
+                    }
+                  }
+            
+                afficherPremiersEntiers(3);
+                console.log("------------");
+                afficherPremiersEntiers(12);          
+        </pre>
+      </li>
+    </ol>
+    <h2>Exercice 2: Damier</h2>
+    <ol>
+      <li>
+        <h3>Expliquer ce que fait la ligne <code>"use strict";</code>.</h3>
+        <p>
+          Cette ligne indique au navigateur qu'il doit utilise JavaScript en
+          "strict mode". Ceci empêche d'utiliser des variables indéfinies et par
+          conséquent force à rédiger du beau code avec du sens.
+        </p>
+      </li>
+      <li>
+        <h3>Expliquez ce que fait l'appel <code>document.write()</code>.</h3>
+        <p>
+          Cet appel permet d'ajouter du contenu à l'HTML de la page, directement
+          via JavaScript et de le changer .
+        </p>
+      </li>
+      <li>
+        <h3>Ajouter une fonction <code>drawCheckerLine()</code>.</h3>
+        <p>On crée une div avec le document.write() à l'intérieur de la fonction drawCheckerLine qui prend en paramètre un entier n qui représente le nombre de cases voulu, puis avec une boucle for on appel la fonction drawCheckerCell.<i>Code :</i></p>
+        <pre>
+                function drawCheckerLine(n) {
+                    document.write('&lt;div style="clear:both;"&gt;');
+                    for (let i = 0; i &lt; n; i++) {
+                      drawCheckerCell();
+                    }
+                    document.write("&lt;/div&gt;");
+                }
+        </pre>
+      </li>
+
+      <li>
+        <h3>Ajouter une fonction <code>drawCheckerBoard()</code>.</h3>
+        <p>On rajoute un boucle for à l'intérieur de la fonction qui fait appeler la fonction drawCheckerLine pour n qu'on veut<i>Code :</i></p>
+        <pre>
+                function drawCheckerBoard(n) {
+                    for (let i = 0; i &lt; n; i++) {
+                      drawCheckerLine(n);
+                    }
+                }
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          Complétez le style de la balise style du document pour définir une
+          case noire et une case blanche et utilisez ce style pour les cases du
+          damier.
+        </h3>
+        <p>à l'intérieur de la fonction drawCheckerLine dans la boucle for on crée une variable evenCelles pour détecter les case paires/impaires à l'aide d'un ternary Operator en faisant la somme des indices et les lignes mod 2 si c'est valid on retourne true après on passe cette valeur booléane à la fonction drawCheckerCell et on utilise un autre ternary operator pour distinguer la couleur si la valeur de la variable est true on rajoute une couleur blanche sinon noir. <i>Code :</i></p>
+        <pre>
+                .white {
+                    background-color: white !important;
+                }
+                  .black {
+                    background-color: black !important;
+                }
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          Ajoutez un style de case rouge puis ajoutez un dernier paramètre à
+          <code>drawCheckerBoard()</code> pouvant être vrai ou faux.
+        </h3>
+        <p>Même concept pour cette question sauf que cette fois si la valeur booléane est passé à la fonction drawCheckerBoard qui elle même le passe à drawCheckerLine dont on fait l'initialisation de la variable booléane qui est passé après à drawCheckerCell. <i>Code:</i></p>
+        <pre>
+                  function drawCheckerCell(color, red) {
+                    const bg = color ? "white" : "black";
+                    const diagonale = red ? "red" : "";
+                    document.write(`&lt;div class="cell ${bg} ${diagonale}"&gt;&lt;/div&gt;`);
+                  }
+
+                  function drawCheckerLine(n, ligne, diagonale) {
+                    document.write('&lt;div style="clear:both;"&gt;');
+                    for (let i = 0; i &lt; n; i++) {
+                      const evenCells = (i + ligne) % 2 ? true : false;
+                      const drawLine = diagonale && i === ligne;
+                      drawCheckerCell(evenCells, drawLine);
+                    }
+                    document.write("&lt;/div&gt;");
+                  }
+
+                  function drawCheckerBoard(n, diagonale) {
+                    for (let i = 0; i &lt; n; i++) {
+                      drawCheckerLine(n, i, diagonale);
+                    }
+                  }
+            </pre>
+      </li>
+      <li>
+        <h3>Testez en affichant la diagonale du premier carré.</h3>
+        <a href="./exo2.html" target="_blank">Exercice2</a>
+      </li>
+    </ol>
+  </body>
+</html>

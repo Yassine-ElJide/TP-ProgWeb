@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Exo2</title>
+    <style>
+      div.cell {
+        background-color: silver;
+        margin: 0px;
+        padding: 15px;
+        border: 1px solid black;
+        float: left;
+      }
+      .black {
+        background-color: black !important;
+      }
+      .white {
+        background-color: white !important;
+      }
+      .red {
+        background-color: red !important;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      function drawCheckerCell(color, red) {
+        const bg = color ? "white" : "black";
+        const diagonal = red ? "red" : "";
+        document.write(`<div class="cell ${bg} ${diagonal}"></div>`);
+      }
+
+      function drawCheckerLine(n, ligne, diagonal) {
+        document.write('<div style="clear:both;">');
+        for (let i = 0; i < n; i++) {
+          const evenCells = (i + ligne) % 2 ? true : false;
+          const drawDiagonal = diagonal && i === ligne;
+          drawCheckerCell(evenCells, drawDiagonal);
+        }
+        document.write("</div>");
+      }
+
+      function drawCheckerBoard(n, diagonal) {
+        for (let i = 0; i < n; i++) {
+          drawCheckerLine(n, i, diagonal);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Damier</h2>
+    <p>Carré de 5x5</p>
+    <script>
+      // drawCheckerCell();
+      // drawCheckerLine();
+      drawCheckerBoard(5, true);
+    </script>
+    <br />
+    <p><br />Carré de 3x3</p>
+    <script>
+      drawCheckerBoard(3, false);
+    </script>
+  </body>
+</html>
