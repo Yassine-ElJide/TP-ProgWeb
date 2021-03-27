@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Exo 3</title>
+</head>
+
+<body>
+  <h2>Random Array</h2>
+  <div id="line"></div>
+  <script>
+    "use strict";
+
+    function random(n) {
+      return Math.floor(n * Math.random());
+    }
+
+    function swap(array, i, j) {
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    function randomArray(array) {
+      for (let i = 0; i < array.length; i++) {
+        swap(array, i, random(array.length - 1));
+      }
+    }
+    var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    randomArray(array);
+
+    var line = document.getElementById('line');
+    line.innerHTML = array;
+  </script>
+  <h2>Min/Max 4: Fury Road</h2>
+    <script>
+      //TODO minmax4
+      function minmax4(array) {
+        let min = array[0];
+        let max = array[0];
+        for (let i = 0; i < array.length; i += 2) {
+          if (array[i] < array[i + 1]) {
+            if (array[i] < min) { min = array[i] };
+            if (array[i + 1] > max) { max = array[i + 1] };
+          } else {
+            if (array[i + 1] < min) { min = array[i + 1]; }
+            if (array[i] > max) { max = array[i] };
+          }
+        }
+        return [min, max];
+      }
+
+      let minAndMax4 = minmax4(array);
+      document.write("min " + minAndMax4[0] + " max " + minAndMax4[1]);
+    </script>
+</body>
+
+</html>

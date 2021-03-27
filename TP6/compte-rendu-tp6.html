@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Compte-rendu de TP6</title>
+    <link rel="stylesheet" href="compte-rendu.css" />
+  </head>
+  <body>
+    <h1>Compte Rendu TP6</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span
+        >Lien vers l'exercice 1:
+        <a href="./exo1.html" target="_blank">Exercice1</a></span
+      >
+      <span
+        >Lien vers l'exercice 2:
+        <a href="./exo2.html" target="_blank">Exercice2</a></span
+      >
+      <span
+        >Lien vers l'exercice 3:
+        <a href="./exo3.html" target="_blank">Exercice3</a>
+      </span>
+    </div>
+    <h2>Exercice 1: Tableaux</h2>
+    <ol>
+      <li>
+        <h3>
+          Expliquez ce que fait le code sans pour autant regarder le code de
+          <code>graph.js</code>.
+        </h3>
+        <p>
+          À première vue, le script graph.js semble de schématiser les données
+          d'un tableau sous forme d'un graphe.
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          On cherche à écrire une fonction <code>addThree()</code> qui prend en
+          paramètre un tableau et retourne un nouveau tableau qui contient le
+          même nombre de cases que le tableau pris en paramètre et dont les
+          valeurs des cases est la valeur de la case de même index du tableau
+          pris en paramètre augmentée de trois.
+        </h3>
+        <p>
+          On utilise une boucle for mais avant ça on crée une variable resultat
+          pour stocker le résultat comme ça on modifier le tableau pris en
+          argument et à chaque itération on ajoute l'élément du tableau à
+          résultat en ajoutant 3.
+        </p>
+        <pre>
+                function addThree(array) {
+                    let result = [];
+                    for (let i = 0; i &lt; array.length; i++) result[i] = array[i] + 3;
+                    return result
+                }           
+        </pre>
+      </li>
+
+      <li>
+        <h3>Utiliser la fonction <code>applyForEachElement()</code>.</h3>
+        <p>Pour ne pas modifier le tableau en argument j'utilise le spread operator qui permet de faire une copie après avec la fonction applyForEachElement je passe la copie en argument avec la fonction que je veux appliquer. La fonction applyForEachElement utilise un forEach du coup cette fonction va s'appliquer à chaquer élément de la copie crée.<i>Code :</i></p>
+        <pre>
+            function addThree2(array) {
+                let result = [...array];
+                applyForEachElement(result, function (element) {
+                  return element + 3;
+                });
+                return result;
+            }
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          Utiliser <code>map()</code> dans la fonction <code>addThree()</code>.
+        </h3>
+        <p>
+          On met en commentaire le code prédécemment rédigé pour cette fonction.
+          la fonction map prend en argument une fonction  et à chaque élément du tableau il applique une action qu'on veut et il renvoie un nouveau tableau sans modifier l'ancien.
+          Maintenant la fonction ressemble à ceci :
+        </p>
+        <pre>
+            function addThree(array) {
+                return array.map((el) => el + 3);
+            }
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          On souhaite afficher les valeurs du tableau trié en utilisant la
+          méthode <code>sort</code> sur un tableau.
+        </h3>
+        <p>
+          Contrairement aux fonctions <code>map()</code> et
+          <code>filter()</code>, la fonction <code>sort()</code> retourne le
+          tableau trié si on passe pas une fonction de comparaison en argument elle les trie dans un ordre lexicographique sinon on décide la méthode
+          du tri avec la fonction qu'on passe comme argument 
+        </p>
+        <pre>
+        function sortedArray(array) {
+            return array.sort((a, b) => a - b);
+        }
+        </pre>
+      </li>
+
+      <li>
+          <h3>Sachant que l'on peut utiliser la méthode filter sur un tableau, écrivez la fonction positiveArray qui renvoie un tableau ne contenant que les valeurs positives ou nulles du tableau pris en paramètre.</h3>
+          <p>la fonction filter comme les autres fonctions map, reduce, sort prend une fonction comme argument et c'est à la base de cette fonction on filtre les éléments en renvoyant un nouveau tableau</p>
+      </li>
+    </ol>
+    <h2>Exercice 2: MinMax</h2>
+    <ol>
+      <li>
+        <h3>
+          On cherche à écrire une fonction <code>minmax()</code> qui prend en
+          paramètre un tableau, calcule le minimum et le maximum de ce tableau
+          et renvoie les deux valeurs sous forme d'un nouveau tableau à 2 cases
+          dont la première case est le minimum et la seconde case est le
+          maximum.
+        </h3>
+        <p>
+            On initialise deux variable min , max aient comme valeur array[0] et à chaque
+            parcours du tableau et on modifie leurs valeur en se basant sur une comparaison 
+        </p>
+        <p><i>Code :</i></p>
+        <pre>
+        function minmax(array) {
+            let minimum = array[0];
+            let maximum = array[0];
+            for (let i = 0; i &lt; array.length; i++) {
+                if (array[i] &gt; maximum) maximum = array[i];
+                if (array[i] &lt; minimum) minimum = array[i];
+            }
+            return [minimum, maximum];
+        }
+    </pre>
+      </li>
+
+      <li>
+        <h3>
+          En fait, au lieu d'écrire la boucle à la main, il est possible
+          d'utiliser la méthode <code>reduce()</code> sur un tableau qui permet
+          d'effectuer un même calcul sur chaque valeur.
+        </h3>
+        <p>la methode reduce prend une fonction comme argument et cette fonction prend deux paramètres accumateur et les valeurs du tableau et à chaque parcours du tableau on fait la comparaison entre les deux comme ça on renvoie la valeur soit minimale soit maximale.<i>Code :</i></p>
+        <pre>function minmax2(array) {
+            return [
+              array.reduce(function (acc, value) {
+                return value &lt; acc ? value : acc;
+              }),
+              array.reduce(function (acc, value) {
+                return value &gt; acc ? value : acc;
+              }),
+            ];
+          }</pre>
+      </li>
+
+      <li>
+        <h3>
+          En fait, retourner un tableau avec 2 cases stockant le minimum et le
+          maximum, n'est pas terrible comme convention, il faut mieux renvoyer
+          un dictionnaire avec les clefs <code>min</code> et <code>max</code>.
+        </h3>
+        <p><i>Syntaxe du dictionnaire :</i></p>
+        <pre>let dico = {"min": 3, "max": 7};</pre>
+        <p>même que minmax 2 juste que à la place d'un tableau on renvoie un objet avec les keys min, max <i>Code :</i></p>
+        <pre>function minmax3(array) {
+            return {
+              min: array.reduce(function (acc, value) {
+                return value &lt; acc ? value : acc;
+              }),
+              max: array.reduce(function (acc, value) {
+                return value &gt; acc ? value : acc;
+              }),
+            };
+          }</pre>
+      </li>
+    </ol>
+  </body>
+</html>
