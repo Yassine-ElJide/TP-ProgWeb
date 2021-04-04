@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Horloge</title>
+    <meta charset="utf-8" />
+    <style>
+      body{display: grid; place-items: center;}
+    </style>
+    <script>
+      "use strict";
+
+      function refresh() {
+        const date = new Date();
+        const h = date.getHours();
+        const m = date.getMinutes();
+        const s = date.getSeconds();
+        context.clearRect(0, 0, 600, 600);
+        drawLine({ start: 0, end: 200 }, s, 60, "red", 1);
+        drawLine({ start: 0, end: 202 }, m, 60, "black", 2);
+        drawLine({ start: 0, end: 150 }, h, 12, "", 4);
+        drawArc();
+        for (let i = 0; i < 12; i++) {
+          drawLine({ start: 220, end: 200 }, i, 12, "#1e1e1e", 2);
+        }
+      }
+
+      function loaded() {
+        window.setInterval(refresh, 1000);
+      }
+    </script>
+  </head>
+  <body onload="loaded()">
+    <h2>Horloge</h2>
+    <canvas id="clock" width="600" height="600"> </canvas>
+    <script>
+      const canvas = document.getElementById("clock");
+      const context = canvas.getContext("2d");
+      const drawArc = () => {
+        context.strokeStyle = "blue";
+        context.lineWidth = 3;
+        context.beginPath();
+        context.arc(300, 300, 220, 0, 2 * Math.PI);
+        context.stroke();
+      };
+
+      const drawLine = (dimensions, t, total, style, width) => {
+        context.strokeStyle = style;
+        context.lineWidth = width;
+        let pos = {
+          x: Math.sin((t * 2 * Math.PI) / total),
+          y: -Math.cos((t * 2 * Math.PI) / total),
+        };
+        context.beginPath();
+        context.moveTo(
+          300 + dimensions.start * pos.x,
+          300 + dimensions.start * pos.y
+        );
+        context.lineTo(
+          300 + dimensions.end * pos.x,
+          300 + dimensions.end * pos.y
+        );
+        context.stroke();
+      };
+    </script>
+  </body>
+</html>

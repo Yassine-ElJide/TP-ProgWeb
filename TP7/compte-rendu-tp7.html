@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Compte-rendu de TP 7</title>
+
+    <link rel="stylesheet" href="compte-rendu.css" />
+  </head>
+  <body>
+    <h1>Compte Rendu TP7</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span>Lien vers l'exercice 1: <a href="./exo1.html">Exercice1</a></span>
+    </div>
+
+    <h2>Exercice 1: Horloge</h2>
+    <ol>
+      <li>
+        <h3>
+          Expliquez ce que fait la balise
+          <code>&lt;body onload="loaded()"&gt;</code>
+        </h3>
+        <p>
+          Cette balise permet d'appeler la fonction
+          <code>loaded()</code> lorsque la page a fini de charger.
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          Comment faire pour afficher un "tick" toutes les secondes en utilisant
+          <code>setTimeout()</code> ?
+        </h3>
+        <p>
+          On déplace la ligne <code>setTimeout(refresh, 1000);</code> dans la
+          fonction <code>refresh()</code>. De cette manière, à chaque appel, la
+          fonction se reprogramme elle-même :
+        </p>
+        <pre>
+function refresh() {
+    console.log("tick !");
+    window.setTimeout(refresh, 1000);
+}</pre
+        >
+      </li>
+
+      <li>
+        <h3>
+          Transformez le code pour utiliser <code>window.setInterval()</code>.
+        </h3>
+        <p><i>Code :</i></p>
+        <pre>
+function refresh() {
+    console.log("tick !");
+}
+
+function loaded() {
+    window.setInterval(refresh, 1000);
+}</pre
+        >
+      </li>
+
+      <li>
+        <h3>
+          Transformez le code pour afficher la date courante avec
+          <code>new Date()</code>.
+        </h3>
+        <p><i>Code :</i></p>
+        <pre>
+function refresh() {
+    const date = new Date();
+    const h = date.getHours();
+    const m = date.getMinutes();
+    const s = date.getSeconds();
+    console.log(hours + ":" + minutes + ":" + seconds);
+}</pre
+        >
+      </li>
+
+      <li>
+        <ul>
+          <li>
+            <h4>
+              Retirez les commentaires autour du code en bas du fichier. Que
+              fait ce code ?
+            </h4>
+            <p>Ce code dessine une ligne horizontale.</p>
+          </li>
+          <li>
+            <h4>Modifiez-le pour afficher une aiguille indiquant midi.</h4>
+            <p><i>Code :</i></p>
+            <pre>
+context.beginPath();
+context.moveTo(300, 100);
+context.lineTo(300, 0);
+context.stroke();</pre
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h3>Dessinez un cercle de rayon 220 pixels centré dans le canvas.</h3>
+        <p><i>Code :</i></p>
+        <pre>
+context.beginPath();
+context.arc(300, 300, 220, 0, 2 * Math.PI);
+context.moveTo(300, 300);
+context.lineTo(300, 100);
+context.stroke();</pre
+        >
+      </li>
+
+      <li>
+        <h3>
+          Indiquez les formules mathématiques qui permettent pour une valeur de
+          0 à 60 secondes de trouver les coordonnées x et y du sommet de
+          l'aiguille.
+        </h3>
+        <p>
+          <i>Code :</i>total équivaut à le nombre de secondes ou minutes/heures
+          t equivaut à le temps maintenant et ça change au fonction du placement
+          de l'aiguille
+        </p>
+        <pre>
+ 
+            let pos = {
+            x: Math.sin((t * 2 * Math.PI) / total),
+            y: -Math.cos((t * 2 * Math.PI) / total),
+          };
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          Modifiez le code pour faire bouger la trotteuse (nom de l'aiguille des
+          secondes) en fonction des secondes.
+        </h3>
+        <p>
+          à chaque appel de refresh faut faire un clear comme ça on ne redessine
+          pas sur le même tick après on appelle la fonction drawLine qui trace
+          la trotteuse à chaque seconde en se basant su les coordonnées qui se
+          modifient synchronisement grace au parametre qui est passe celui des
+          secondes
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          Modifiez votre code pour afficher la trotteuse en rouge et le cadre en
+          bleu. Réglez à 3 pixels l'épaisseur du trait du cadre.
+        </h3>
+        <p>
+          On rajoute quelques paramètres supplémentaires à la fonction drawLine
+          style et width qui sont responsable de changer la couleur et
+          l'epaisseur du crayon à chaque appel de fonction
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          Affichez en plus de la trotteuse, l'aiguille des minutes (la grande
+          aiguille).
+        </h3>
+        <p>
+          Pour ne pas répeter le code, on utilise la même fonction drawLine
+          juste que cette fois ci ça sera pour les minutes et à cause du
+          paramètre du temps passé en argument ça va marcher.
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          Ajoutez l'aiguille des heures, qui doit être d'une longueur inférieure
+          aux deux autres aiguilles (disons 70%), mais plus large, toujours en
+          essayant de 'factoriser' le code.
+        </h3>
+        <p>
+          On utilise la même fonction drawLine cette fois ci on modifier les
+          dimension de notre aiguille comme ça on fait la différence entre les
+          trois et on rajoute l'epaisseur
+        </p>
+      </li>
+
+      <li>
+        <h3>
+          Ajoutez 12 traits de graduation ('ticks'), autour du cadre de
+          l'horloge.
+        </h3>
+        <p>
+          à l'interieur de la fonction refresh on rajoute une boucle for qui est
+          responsable des graduations de l'horlage cette boucle trace une
+          graduation avec la fonction drawLine et la limitation est 12.
+        </p>
+      </li>
+    </ol>
+  </body>
+</html>
