@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Compte-rendu de TP 8</title>
+    <link rel="stylesheet" href="compte-rendu.css">
+</head>
+<body>
+    <h1>Compte Rendu TP8</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span>Lien vers l'exercice 1: <a href="./memory.html">Exercice1</a></span>
+    </div>
+    <h2>Exercice 1: Memory</h2>
+    <ol>
+        <li>
+            <h3>Recopier l'ensemble des ressources.</h3>
+        </li>
+
+        <li>
+            <h3>À quoi sert la fonction constructor ? constructor(images, blank) { // TODO }
+                À quel moment est-elle appelée dans le script memory.html ?</h3>
+            <p>La méthode constructor est appelée lorsqu'on initialise un nouvel objet d'une classe qu'on a déjà crée et cela ce fait avec le mot clé new
+                comme ça chaque objet posséde les paramétres passés en constructeur comme clés. Elle est appelé au moment d'initialisation de la variable game, car on initialise un nouvel objet de la class MemoryGame avec le mot clé de new.
+            </p>
+        </li>
+
+        <li>
+            <h3>crivez le code de la fonction MemoryGame pour stocker le tableau des images et l'image de dos de carte.
+                Écrivez ensuite le code de la méthode build afin que le nombre d'images soit affiché à l'intérieur de la balise div prise en paramètre.
+                Note : les élements du DOM possèdent un attribut innerHTML.</h3>
+            <p>pour stocker les images et l'image de dos de la carte on rajoute des paramètres que reçoit le constructeur au moment de l'appeler, array qui contient les images et blank dans notre cas après à l'intérieur on met this.cards = images et this.back = blank le this refère à chaque objet qu'on crée.
+                Vu qu'on a un div comme paramètre on rajoute du contenu avec l'attribut innerHTML div.innerHTML = this.cards.length
+            </p>
+        </li>
+
+        <li>
+           <h3>Pour notre Memory, nous allons créer des paires de cartes, une paire par image. Pour stocker ces cartes, on va créer un tableau cards qui va contenir pour chaque carte l'index de l'image correspondante.
+            Dans un vrai memory, ce tableau des index des images est permuté lors de la création du jeu ; sinon, ce n'est pas très drole. Pour l'instant, nous allons utiliser la fonction shuffleCards qui vous a été donnée car cela sera plus facile pour la mise au point du programme.
+            Que fait la fonction shuffleCards, et en quoi cela aide-t-il pour la mise au point du programme ?</h3>
+            <p>La fonction shuffleCards nous renvoie un tableau qui contient les indices d'un entier répétés 2 fois à l'aide d'une boucle for qui parcours jusqu'a la longueur qu'on passe au paramètre -1. Et celà va nous aider pour savoir les images qui se situent à un indice spécifié et vu qu'on a 8 images on aura 16 indices et 8 images. Du coup on va savoir les indices des deux éléments de chaque paire</p>
+        </li>
+
+        <li>
+           <h3>Modifiez le constructeur de la classe MemoryGame pour y stocker les positions de chacune des cartes renvoyées par la fonction shuffleCards. Modifiez ensuite la méthode build pour afficher autant de cartes que de cases du tableau cards qu'a renvoyé la fonction shuffleCards (ici, 16 cartes). Chaque carte sera représentée par un div contenant une image (voir le CSS de memory.html). Pour l'instant, chaque carte affichera le même dos d'image.
+            </h3>
+           <p>Pour utilise la fonction shuffleCards, à l'intérieur du constructeur on rajoute un autre élément this.shuffle = shuffleCards(images.length) comme ça on aura un tableau de 16 cases qui contient les indices des images qu'on a déjà pour dupliqué pour chaque image.
+                après on crée un nouvelle fonction createImg qui va prendre comme paramètre le this qui représentre l'image en question et le div et cette fonction va à l'aide des méthodes createElement et appendChild et l'attribut .src on crée un div pour chaque image et on ajoute comme source this.back qui représente le dos de l'image après on on fait appendChild au div principale qu'on a déjà reçu en param
+           </p>
+           <pre>
+            function createImg(instance, div, i) {
+                const innerDiv = document.createElement("div");
+                const img = document.createElement("img");
+                img.alt = "card";
+                img.src = instance.back;
+                innerDiv.appendChild(img);
+                div.appendChild(innerDiv);
+              }
+           </pre>
+        </li>
+
+        <li>
+            <h3>Comment faire pour savoir sur quelle carte un utilisateur a cliqué ?
+                Implantez la solution retenue pour que, lorsque l'on clique sur une carte, son index dans le tableau des cartes (entre 0 inclus et 16 exclus) et le numéro de carte correspondante (entre 0 inclus et 8 exclus) soient affichés.</h3>
+            <p>En javascript y a les events on crée une fonctions handleClick qui prend en paramètre l'image où on veut cliquer son numéro et son indice dans le tableau que renvoie la fonction shuffleCards, après on affiche les deux.</p>
+        </li>
+
+        <li>
+            <h3>Comment faire pour que le tableau des images soit accessible lors d'un clic ?
+                Implantez votre solution pour que, lorsque l'on clique sur une carte, l'image correspondante s'affiche.</h3>
+            <p>Pour faire ceci on crée une fonction showImage qui prend en paramètre l'élement où on a cliqué et l'image correspandante et à l'aide d'un event onClick on appele une fonction qui change le dos de l'image à l'image correspandante(passé en apramètre) et celà est accessible avec les attributs element.children[0].src = image</p>
+        </li>
+
+        <li>
+            <h3>
+                Sachant que l'on appelle selection la carte dont on se souvient, écrivez en pseudo-code l'algorithme qui prend en paramètre la carte sur laquelle on vient de cliquer et qui implante la mécanique de jeu.
+                Implantez ensuite votre algorithme en JavaScript.
+                Comment faire pour ne pas prendre en compte les cartes déjà retournées (il y a deux cas) ?
+                Modifiez votre programme en conséquence.</h3>
+            <p>Pour faire cela on va créer une fonction flipCards qui sera la fonction principale du jeu.
+                On va rajouter quelques éléments dans le constructeur comme un tabluea qui va nous dire si les éléments sont déjà trouvés ou non this.find et this.image qui va valoir chaque image.
+                après à l'aide d'un click event on va manipuler le tableau et du this.find et avec les attributs on changer les src de les images.
+            </p>
+        </li>
+
+        <li>
+            <h3>Si les images des deux cartes ne sont pas identiques, on souhaite avoir le temps de voir la face de la seconde carte avant de les retourner face cachée. Pour cela, le plus simple est d'attendre 500 ms avant de retourner les cartes. Comment écrire cela en JavaScript ?
+                Note : attention à ce que vous appelez this !</h3>
+            <p>Dans la fonction flipCards on rajoute un setTimeOut de 500ms qui va fliper la src des deux images s'ils ne sont pas identiques.</p>
+        </li>
+
+        <li>
+            <h3>Enfin, modifiez shuffleCards pour que le tableau des cartes soit mélangé de façon aléatoire</h3>
+            <p>Pour faire cela on crée une fonction intermédiaire swap qui prend un tableau et deux éléments et change leurs places et dans la fonction shuffle cards on crée une boucle for qui parcours tous la variable card et pour chaque indice on appelle la fonction swap qui va prendre comme deuxième paramètre un nombre aléatoire crée i + Math.floor((cards.length - i) * Math.random())</p>
+        </li>
+    </ol>
+</body>
+</html>
