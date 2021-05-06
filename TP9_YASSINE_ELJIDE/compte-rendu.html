@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Compte-rendu de TP 9</title>
+    <link rel="stylesheet" href="compte-rendu.css" />
+  </head>
+  <body>
+    <h1>Compte Rendu du TP 9</h1>
+    <div class="info">
+      <h2>Yassine EL Jide</h2>
+      <h3>TD:G</h3>
+      <span>Lien vers l'exercice 1: <a href="./exo1.html">Exercice1</a></span>
+      <span>Lien vers l'exercice 2: <a href="./exo2.html">Exercice2</a></span>
+    </div>
+
+    <h2>Exercice1: Un panier de fruits</h2>
+    <ol>
+      <li>
+        <h3>Téléchargement de fichiers</h3>
+      </li>
+
+      <li>
+        <h3>
+          On cherche à écrire une requête AJAX qui va lire le fichier
+          fruits.json. Créez un objet <code>XMLHttpRequest</code>, utilisez la
+          méthode <code>open()</code> pour créer une requête sur le fichier
+          <code>fruits.json</code>, puis envoyez la requête au serveur (ou au
+          système de fichier si vous testez en local) avec la méthode
+          <code>send</code>.
+        </h3>
+        <p>On crée un objet XMLHttpRequest après on rajoute onreadystatechange comme attribut qui va recevoir une fonction qui se déclenche lors de du lancement de la requête après on fait un type de requête GET avec le lien du fichier dans le serveur de la fac après on envoie la requête après avoir changé le MIME type</p>
+      </li>
+      
+      <li>
+        <h3>Que se passe-t-il si vous essayez d'envoyer une requête pour récupérer une copie locale du fichier fruits.json </h3>
+        <p>Personnellement, y a pas d'erreur c'est le même cas avec le lien de la fac</p>
+      </li>
+
+      <li>
+        <h3>Ajoutez une fonction pour écouter les événements readystatechange et si la requête a réussi, affichez le résultat de la propriété responseText dans la console. </h3>
+        <p>Code: </p>
+        <pre>
+          let ajax = new XMLHttpRequest();
+          ajax.onreadystatechange = function () {
+          if (ajax.readyState === 4 && ajax.status === 200) {
+              let data = JSON.parse(ajax.responseText);
+              console.log(data)
+            }
+          };
+          ajax.open("GET", "fruits.json", true);
+          ajax.overrideMimeType("application/json");
+          ajax.send();
+        </pre>
+      </li>
+      <li>
+        <h3>
+          Transformez la chaine de caractère stockée dans
+          <code>responseText</code> au format JSON en objet JavaScript. Quel est
+          le type d'objet JavaScript obtenu ?
+        </h3>
+        <p><i>Code :</i></p>
+        <pre>
+          ajax.onreadystatechange = function() {
+            if (ajax.readyState === 4) console.log(JSON.parse(ajax.responseText));
+          };
+        </pre>
+        <p>On obtient un objet de type <code>Object</code>.</p>
+      </li>
+      <li>
+        <h3>
+          Récupérez une référence sur la table HTML en JavaScript et modifiez la
+          table pour ajouter une ligne par fruit, avec deux colonnes, une
+          contenant le nom du fruit et l'autre la quantité du fruit.
+        </h3>
+        <p><i>Code :</i></p>
+        <pre>
+          let ajax = new XMLHttpRequest();
+
+          ajax.onreadystatechange = function () {
+              if (ajax.readyState === 4 && ajax.status === 200) {
+                  let data = JSON.parse(ajax.responseText);
+                  let table = document.getElementById("basket");
+                  let quantity = document.getElementById("quantity");
+                  data.forEach(ele => {
+                      const {name, quantity} = ele
+                      table.innerHTML += `&lt;tr&gt;&lt;td&gt;${name}&lt;/td&gt;&lt;&lt;td&gt;${quantity}&lt;/td&gt;&lt;/tr&gt;`;
+                  });
+              }
+          };
+          ajax.open("GET", "fruits.json", true);
+          ajax.overrideMimeType("application/json");
+          ajax.send();
+        </pre>
+      </li>
+
+      <li>
+        <h3>
+          On souhaite maintenant que le div quantity de la page HTML soit mis à
+          jour avec la somme des quantités de tous les fruits.
+        </h3>
+        <p>A l'intérieur de la fonction on rajoute un bout de code qui va s'occuper de celà avec l'attribut innertext on va mettre comment contenu la somme renvoyé par la fonction reduce du contenu du fichier</p>
+      </li>
+    </ol>
+
+    <h2>Exercice2: Un panier de fruits (2)</h2>
+    <ol>
+      <li>
+        <h3>Recopier les fichiers</h3>
+      </li>
+      <li>
+        <h3>
+          Quelle doit être la structure de données écrite dans le fichier
+          prices.json ?
+        </h3>
+        <p><i>Fichier :</i>La strucutre doit être un objet et les clés sont en string aussi</p>
+        <pre>
+[
+  {
+    "name": "orange",
+    "price": 10
+  },
+  {
+    "name": "banana",
+    "price": 20
+  },
+  {
+    "name": "peer",
+    "price": 5
+  }
+]</pre
+        >
+      </li>
+
+      <li>
+        <h3>
+          Faites en sorte que le fichier <code>prices.json</code> soit chargé
+          par une requête AJAX.
+        </h3>
+        <p>Pour ne pas répeter deux requetes séparées on va change readystatechange en onload comme ça quand on est dans l'étape du loading on va lancer une nouvelle requête et quand l'être sera onload on fera tous le logique nécessaire vu qu'on a déjà les données de la première requête.</p>
+      </li>
+
+      <li>
+        <h3>
+          Faites en sorte de calculer le prix du panier et de mettre à jour la
+          page Web avec le prix.
+        </h3>
+        <p>
+          <i>On ajoute ce code apès la boucle <code>for</code> :</i>
+        </p>
+        <pre>
+          quantity.innerText = json.reduce((acc, val) => {
+            return acc + val.quantity;
+          }, 0);
+          price.innerText = totalPrice;
+        </pre>
+      </li>
+    </ol>
+  </body>
+</html>
